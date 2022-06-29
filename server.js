@@ -24,6 +24,9 @@ const rappers = {
 app.get('/', (request, response) =>{
     response.sendFile(__dirname + '/index.html');
 })
+app.get('/api', (request, response) =>{
+    response.json(rappers);
+})
 
 app.get('/api/:rapperName', (request, response) =>{
     const rappersName = request.params.rapperName.toLowerCase()
@@ -33,6 +36,6 @@ app.get('/api/:rapperName', (request, response) =>{
     response.json(rappers['dylan']);
 })
 
-app.listen(PORT, () => {
+app.listen(process.env.PORT || PORT, () => {
     console.log(`Server is running on port ${PORT}`)
 })
